@@ -137,7 +137,7 @@ const ApplicationBook: React.FC = () => {
           <InContainer isMobile={isMobile}>
             <Container isMobile={isMobile}>
               <CalendarComponent date={date} onDateChange={handleDateChange} />
-              {isMobile && (
+              {isMobile && date && (
                 <Reservation date={date} instrument={instrument} team={team} />
               )}
               <SelectedTime isMobile={isMobile}>
@@ -158,7 +158,7 @@ const ApplicationBook: React.FC = () => {
                 </ReservationButton>
               </SelectedTime>
             </Container>
-            {!isMobile && (
+            {!isMobile && date && (
               <Reservation date={date} instrument={instrument} team={team} />
             )}
           </InContainer>
@@ -168,6 +168,13 @@ const ApplicationBook: React.FC = () => {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onSubmit={handleSubmit}
+            reservationInfo={{
+              date: date,
+              startTime: startTime?.time,
+              endTime: printEndTime,
+              instrument: instrument,
+              team: team,
+            }}
           />
         )}
       </OutContainer>
