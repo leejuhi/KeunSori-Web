@@ -1,13 +1,12 @@
 ---
-name: "✅ Feature"
-about: 새로운 기능 추가
-title: "✅ Feature: "
-labels: enhancement
+name: Feature
+about: new feature
+title: Feature
+labels: feature
 assignees: ''
 
 ---
 
-## Description
 설명을 작성해주세요.
 
 ## To Do
