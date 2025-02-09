@@ -50,6 +50,9 @@ const ManagePage = () => {
             display: flex;
             justify-content: center;
             flex-direction: column;
+            @media (max-width: 768px) {
+              width: 80%;
+            }
           `}
         >
           <div className={tabStyle}>
@@ -66,11 +69,7 @@ const ManagePage = () => {
               가입 승인
             </Nav>
           </div>
-          <div
-            className={css`
-              width: 90%;
-            `}
-          >
+          <div className={css``}>
             {activeTab === "member" && <DynamicTable />}
             {activeTab === "approval" && <ApprovalTable />}
           </div>
