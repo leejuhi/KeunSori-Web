@@ -70,6 +70,13 @@ const ActionButton = styled.button`
   }
 `;
 
+const Scroll = styled.div`
+  @media (max-width: 768px) {
+    height: 500px;
+  }
+  overflow: auto;
+`;
+
 const ApprovalTable: React.FC = () => {
   const [rows, setRows] = useState<Row[]>([]);
 
@@ -155,36 +162,38 @@ const ApprovalTable: React.FC = () => {
 
   return (
     <TableContainer>
-      <Table>
-        <thead>
-          <TableRow>
-            <TableHeadCell>
-              <input type="checkbox" disabled />
-            </TableHeadCell>
-            <TableHeadCell>번호</TableHeadCell>
-            <TableHeadCell>이름</TableHeadCell>
-            <TableHeadCell>학번</TableHeadCell>
-            <TableHeadCell>가입 신청일</TableHeadCell>
-          </TableRow>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <TableRow key={row.id}>
-              <TableCell>
-                <input
-                  type="checkbox"
-                  checked={row.checked || false}
-                  onChange={() => handleCheckboxChange(row.id)}
-                />
-              </TableCell>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.StudentId}</TableCell>
-              <TableCell>{row.date.toLocaleDateString()}</TableCell>
+      <Scroll>
+        <Table>
+          <thead>
+            <TableRow>
+              <TableHeadCell>
+                <input type="checkbox" disabled />
+              </TableHeadCell>
+              <TableHeadCell>번호</TableHeadCell>
+              <TableHeadCell>이름</TableHeadCell>
+              <TableHeadCell>학번</TableHeadCell>
+              <TableHeadCell>가입 신청일</TableHeadCell>
             </TableRow>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => (
+              <TableRow key={row.id}>
+                <TableCell>
+                  <input
+                    type="checkbox"
+                    checked={row.checked || false}
+                    onChange={() => handleCheckboxChange(row.id)}
+                  />
+                </TableCell>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.StudentId}</TableCell>
+                <TableCell>{row.date.toLocaleDateString()}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
+        </Table>
+      </Scroll>
       <ActionButton onClick={ApproveComplete}>가입 승인</ActionButton>
     </TableContainer>
   );
