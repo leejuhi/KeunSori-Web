@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
-
+const DetailText = styled.div<{ margin?: boolean }>`
+  font-size: 13px;
+  font-weight: 300;
+  margin: 5px;
+  margin-bottom: ${(props) => (props.margin ? "15px" : "5px")};
+  text-align: center;
+`;
 const Text = styled.div`
   text-align: center;
   font-weight: 400;
@@ -46,4 +52,4 @@ const Button = styled.button<{ isDelete?: boolean }>`
   margin: 0 5px;
 `;
 
-export { Overlay, ModalWrapper, Text, ButtonWrapper, Button };
+export { Overlay, ModalWrapper, Text, ButtonWrapper, Button, DetailText };
