@@ -10,7 +10,7 @@ const SignUpForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     studentId: "",
-    hongikgmail: "",
+    email: "",
     password: "",
     passwordConfirm: "",
   });
@@ -25,17 +25,13 @@ const SignUpForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      formData.hongikgmail += "@g.hongik.ac.kr";
-      const response = await registerUser(formData);
-      console.log("응답: ", response);
-      setMessage(response.message);
-
+      await registerUser(formData);
+      setMessage("회원가입에 성공했습니다.");
       navigate("/login");
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         console.error("Error: ", error.message);
         console.error("Server message: ", error.response?.data.message);
-
         setMessage(error.response?.data.message || "다시 시도해주세요.");
       } else {
         console.error("Unexpected error: ", error);
@@ -117,10 +113,10 @@ const SignUpForm: React.FC = () => {
             `}
           >
             <Input
-              name="hongikgmail"
-              placeholder="홍익대학교 gmail"
-              type="string"
-              value={formData.hongikgmail}
+              name="email"
+              placeholder="개인 이메일"
+              type="email"
+              value={formData.email}
               onChange={handleChange}
               required
               className={css`
@@ -128,16 +124,6 @@ const SignUpForm: React.FC = () => {
                 border-right: none;
               `}
             ></Input>
-            <span
-              className={css`
-                padding: 10px;
-                font-size: 16px;
-                margin-right: 5px;
-                padding-left: 0px;
-              `}
-            >
-              @g.hongik.ac.kr
-            </span>
           </div>
 
           <div
